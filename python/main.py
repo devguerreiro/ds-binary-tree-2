@@ -33,7 +33,20 @@ class BinaryTree:
                 _node = _node.right
 
     def pre_order_traversal(self, node: Node | None = None):
-        pass
+        _node = self.root if node is None else node
+        stack = []
+        while _node is not None or len(stack) > 0:
+            if _node is not None:
+                # print root leaf
+                print(_node.value, end="->")
+                stack.insert(0, _node)
+                # go to the left
+                _node = _node.left
+            else:
+                # get root leaf
+                _node: Node = stack.pop(0)
+                # go to the right
+                _node = _node.right
 
     def post_order_traversal(self, node: Node | None = None):
         pass
