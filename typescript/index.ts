@@ -11,8 +11,21 @@ class Node {
 class BinaryTree {
     root: Node | null = null;
 
-    inOrderTraversal(node: Node | null = null) {}
-    preOrderTraversal(node: Node | null = null) {}
+    inOrderTraversal() {
+        let node = this.root;
+        const stack: Node[] = [];
+        while (node !== null || stack.length > 0) {
+            if (node !== null) {
+                stack.unshift(node);
+                node = node.left;
+            } else {
+                node = stack.shift() as Node;
+                process.stdout.write(node.value + "->");
+                node = node.right;
+            }
+        }
+    }
+    preOrderTraversal() {}
     postOrderTraversal(node: Node | null = null) {}
     height(node: Node | null = null) {}
 }
