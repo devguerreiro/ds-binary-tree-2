@@ -25,7 +25,20 @@ class BinaryTree {
             }
         }
     }
-    preOrderTraversal() {}
+    preOrderTraversal() {
+        let node = this.root;
+        const stack: Node[] = [];
+        while (node !== null || stack.length > 0) {
+            if (node !== null) {
+                process.stdout.write(node.value + "->");
+                stack.unshift(node);
+                node = node.left;
+            } else {
+                node = stack.shift() as Node;
+                node = node.right;
+            }
+        }
+    }
     postOrderTraversal(node: Node | null = null) {}
     height(node: Node | null = null) {}
 }
