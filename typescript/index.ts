@@ -59,7 +59,24 @@ class BinaryTree {
             process.stdout.write(visitedStack.shift() + "->");
         }
     }
-    height(node: Node | null = null) {}
+    height() {
+        if (this.root === null) return 0;
+
+        let node = this.root;
+        const traversalStack = [node];
+        const visitedStack: number[] = [];
+        while (traversalStack.length > 0) {
+            node = traversalStack.shift() as Node;
+            visitedStack.unshift(node.value);
+            if (node.left !== null) {
+                traversalStack.unshift(node.left);
+            }
+            if (node.right !== null) {
+                traversalStack.unshift(node.right);
+            }
+        }
+        return Math.floor(Math.log2(visitedStack.length));
+    }
 }
 
 export default {};
