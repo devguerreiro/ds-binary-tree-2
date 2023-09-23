@@ -1,3 +1,4 @@
+import math
 from typing import TypeVar
 
 
@@ -66,7 +67,20 @@ class BinaryTree:
             print(visited_stack.pop(0), end="->")
 
     def height(self, node: Node | None = None):
-        pass
+        if self.root is None:
+            return 0
+
+        node = self.root
+        traversal_stack = [node]
+        visited_stack = []
+        while len(traversal_stack) > 0:
+            node = traversal_stack.pop(0)
+            visited_stack.insert(0, node.value)
+            if node.left is not None:
+                traversal_stack.insert(0, node.left)
+            if node.right is not None:
+                traversal_stack.insert(0, node.right)
+        return math.floor(math.log(len(visited_stack), 2))
 
 
 binary_tree = BinaryTree()
