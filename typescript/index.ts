@@ -39,7 +39,26 @@ class BinaryTree {
             }
         }
     }
-    postOrderTraversal(node: Node | null = null) {}
+    postOrderTraversal() {
+        if (this.root === null) return;
+
+        let node = this.root;
+        const traversalStack = [node];
+        const visitedStack: number[] = [];
+        while (traversalStack.length > 0) {
+            node = traversalStack.shift() as Node;
+            visitedStack.unshift(node.value);
+            if (node.left !== null) {
+                traversalStack.unshift(node.left);
+            }
+            if (node.right !== null) {
+                traversalStack.unshift(node.right);
+            }
+        }
+        while (visitedStack.length > 0) {
+            process.stdout.write(visitedStack.shift() + "->");
+        }
+    }
     height(node: Node | null = null) {}
 }
 
